@@ -240,7 +240,15 @@ public class UserApproveController implements Serializable {
         temSQL = "SELECT u FROM WebUser u WHERE u.retired=false AND u.activated=false";
         List<WebUser> lst;
         lst = getUserFacade().findBySQL(temSQL);
-        return new ListDataModel<WebUser>(lst);
+        return new ListDataModel<>(lst);
+    }
+    
+    public DataModel<WebUser> getAllUsers() {
+        String temSQL;
+        temSQL = "SELECT u FROM WebUser u WHERE u.retired=false";
+        List<WebUser> lst;
+        lst = getUserFacade().findBySQL(temSQL);
+        return new ListDataModel<>(lst);
     }
 
     public void setToApproveUsers(DataModel<WebUser> toApproveUsers) {

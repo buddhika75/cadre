@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./resources/template/pdhs_template_1.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <!--  testing  -->
+
+
+    <ui:define name="content">
+
+        <p:growl autoUpdate="true" />
+        <h:outputStylesheet library="css" name="pdhscss1.css"   />
+
+
+
+        <f:view>
+            <h:form>
+                <p:panel header="Edit User" >
+                    <p:commandButton value="Save" ajax="false" action="#{webUserController.updateSelected()}" ></p:commandButton>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="DisplayName:" for="displayName" />
+                        <p:outputLabel id="displayName" value="#{webUserController.current.displayName}" title="DisplayName" />
+                        <p:outputLabel value="DefLocale:" for="defLocale" />
+                        <p:selectOneMenu id="defLocale" value="#{webUserController.current.defLocale}" >
+                            <f:selectItem itemLabel="Select" ></f:selectItem>
+                            <f:selectItem itemValue="si_LK" itemLabel="Sinhala" ></f:selectItem>
+                            <f:selectItem itemValue="ta_LK" itemLabel="Tamil" ></f:selectItem>
+                            <f:selectItem itemValue="en" itemLabel="English" ></f:selectItem>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Description:" for="description" />
+                        <p:inputText id="description" value="#{webUserController.current.description}" title="Description" />
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+
+
+        </f:view>
+
+
+
+        <h:outputLabel   rendered="#{sessionController.privilege.restrictedUnit==null}"  value="#{postLabels.unit}" />
+
+
+
+        <h:form rendered="#{!sessionController.privilege.activateAccounts}">
+            <h:outputLabel class="pdPageErrorText" value="#{postLabels.youAreNotAutherizedToViewThisPage}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

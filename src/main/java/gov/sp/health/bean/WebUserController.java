@@ -24,6 +24,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -41,17 +42,25 @@ public class WebUserController implements Serializable {
     WebUserRoleFacade roleFacade;
     @EJB
     PrivilegeFacade preFacade;
-    
-    SessionController sessionController = new SessionController();
+    @Inject
+    SessionController sessionController;
     List<WebUser> lstItems;
     private WebUser current;
-    private DataModel<WebUser>  items = null;
+    private DataModel<WebUser> items = null;
     private int selectedItemIndex;
     boolean selectControlDisable = false;
     boolean modifyControlDisable = true;
     String selectText = "";
 
     public WebUserController() {
+    }
+
+    public String toEditWebUser() {
+        if (current == null) {
+            JsfUtil.addErrorMessage("Plese select");
+            return "";
+        }
+        return "/admin_edit_user";
     }
 
     public List<WebUser> getLstItems() {
@@ -85,7 +94,7 @@ public class WebUserController implements Serializable {
         return ejbFacade;
     }
 
-    public DataModel<WebUser>  getItems() {
+    public DataModel<WebUser> getItems() {
         items = new ListDataModel(getFacade().findAll("name", true));
         return items;
     }
@@ -161,11 +170,21 @@ public class WebUserController implements Serializable {
         this.prepareSelectControlDisable();
     }
 
+    public void updateSelected() {
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
+        this.prepareSelect();
+        recreateModel();
+        getItems();
+        selectText = "";
+        selectedItemIndex = intValue(current.getId());
+    }
+
     public void saveSelected() {
-        if (sessionController.getPrivilege().isManageAccounts()==false){
+        if (sessionController.getPrivilege().isManageAccounts() == false) {
             JsfUtil.addErrorMessage("You are not autherized to make changes to any content");
             return;
-        }            
+        }
         if (selectedItemIndex > 0) {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
@@ -203,7 +222,7 @@ public class WebUserController implements Serializable {
     }
 
     public void delete() {
-        if (sessionController.getPrivilege().isManageAccounts() ==false){
+        if (sessionController.getPrivilege().isManageAccounts() == false) {
             JsfUtil.addErrorMessage("You are not autherized to delete any content");
             return;
         }

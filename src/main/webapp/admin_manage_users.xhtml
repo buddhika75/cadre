@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./resources/template/pdhs_template_1.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <!--  testing  -->
+
+
+    <ui:define name="content">
+
+        <p:growl autoUpdate="true" />
+        <h:outputStylesheet library="css" name="pdhscss1.css"   />
+        <h:panelGroup rendered="#{sessionController.privilege.activateAccounts}">
+
+
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <p:dataTable value="#{webUserController.lstItems}" var="item" rowIndexVar="n">
+                        <p:column  width="50">
+                            <f:facet name="header">
+                                <h:outputText value="Serial"/>
+                            </f:facet>
+                            <h:outputText value="#{n + 1}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.webUserPerson.name}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Language"/>
+                            </f:facet>
+                            <h:outputText value="#{item.defLocale}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="User Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.displayName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Theme"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userWebTheme}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Role"/>
+                            </f:facet>
+                            <h:outputText value="#{item.role.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Actions"/>
+                            </f:facet>
+                            <p:commandButton ajax="false" value="Edit" action="#{webUserController.toEditWebUser()}" >
+                                <f:setPropertyActionListener value="#{item}" target="#{webUserController.current}" ></f:setPropertyActionListener>
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+
+
+
+        </h:panelGroup>        
+        <h:form rendered="#{!sessionController.privilege.activateAccounts}">
+            <h:outputLabel class="pdPageErrorText" value="#{postLabels.youAreNotAutherizedToViewThisPage}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

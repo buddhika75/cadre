@@ -10,13 +10,15 @@ package gov.sp.health.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 /**
  *
- * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical Informatics)
+ * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical
+ * Informatics)
  */
 @Entity
-@Table(name="WEBUSER")
+@Table(name = "WEBUSER")
 public class WebUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +27,7 @@ public class WebUser implements Serializable {
     private Long id;
     @ManyToOne
     WebTheme userWebTheme;
-    
+
     String webUserPassword;
     @OneToOne
     Person webUserPerson;
@@ -53,14 +55,33 @@ public class WebUser implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date activatedAt;
     String activateComments;
-    
+
     @ManyToOne
     WebUserRole role;
-    
-    
+
+    @Transient
+    String displayName;
+
     String primeTheme;
     String defLocale;
 
+    public String getDisplayName() {
+        BasicTextEncryptor en = new BasicTextEncryptor();
+        en.setPassword("health");
+        try {
+            displayName = en.decrypt(name);
+        } catch (Exception ex) {
+            displayName = "";
+        }
+        return displayName;
+    }
+
+    public void setDisplayName(String DisplayName) {
+        this.displayName = DisplayName;
+    }
+
+    
+    
     public String getDefLocale() {
         return defLocale;
     }
@@ -76,9 +97,7 @@ public class WebUser implements Serializable {
     public void setPrimeTheme(String primeTheme) {
         this.primeTheme = primeTheme;
     }
-    
-    
-    
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -142,9 +161,7 @@ public class WebUser implements Serializable {
     public void setRetirer(WebUser retirer) {
         this.retirer = retirer;
     }
-    
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -217,10 +234,6 @@ public class WebUser implements Serializable {
         this.role = role;
     }
 
-    
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
