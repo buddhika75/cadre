@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CountryEditDlg" widgetVar="CountryEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCountry.EditCountryTitle}">
+            <h:form id="CountryEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{countryController.selected != null}">
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_sname}" for="sname" />
+                        <p:inputText id="sname" value="#{countryController.selected.sname}" title="#{bundleCountry.EditCountryTitle_sname}" />
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_tname}" for="tname" />
+                        <p:inputText id="tname" value="#{countryController.selected.tname}" title="#{bundleCountry.EditCountryTitle_tname}" />
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{countryController.selected.code}" title="#{bundleCountry.EditCountryTitle_code}" />
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{countryController.selected.createdAt}" title="#{bundleCountry.EditCountryTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_creater}" for="creater" />
+                        <p:selectOneMenu id="creater" value="#{countryController.selected.creater}" >
+                            <f:selectItem itemLabel="#{bundleCountry.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="createrItem"
+                                           itemValue="#{createrItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{countryController.selected.description}" title="#{bundleCountry.EditCountryTitle_description}" />
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{countryController.selected.name}" title="#{bundleCountry.EditCountryTitle_name}" />
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_retireComments}" for="retireComments" />
+                        <p:inputText id="retireComments" value="#{countryController.selected.retireComments}" title="#{bundleCountry.EditCountryTitle_retireComments}" />
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_retiredAt}" for="retiredAt" />
+                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{countryController.selected.retiredAt}" title="#{bundleCountry.EditCountryTitle_retiredAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_retirer}" for="retirer" />
+                        <p:selectOneMenu id="retirer" value="#{countryController.selected.retirer}" >
+                            <f:selectItem itemLabel="#{bundleCountry.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="retirerItem"
+                                           itemValue="#{retirerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_superArea}" for="superArea" />
+                        <p:selectOneMenu id="superArea" value="#{countryController.selected.superArea}" >
+                            <f:selectItem itemLabel="#{bundleCountry.SelectOneMessage}"/>
+                            <f:selectItems value="#{areaController.itemsAvailableSelectOne}"
+                                           var="superAreaItem"
+                                           itemValue="#{superAreaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleCountry.EditCountryLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{countryController.selected.id}" title="#{bundleCountry.EditCountryTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{countryController.update}" value="#{bundleCountry.Save}" update="display,:CountryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CountryEditDialog');"/>
+                    <p:commandButton value="#{bundleCountry.Cancel}" onclick="CountryEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

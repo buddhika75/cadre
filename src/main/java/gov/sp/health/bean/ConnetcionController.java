@@ -33,7 +33,7 @@ import org.primefaces.event.CaptureEvent;
  * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical
  * Informatics)
  */
-@Named
+@Named(value = "connetcionController")
 @SessionScoped
 public class ConnetcionController implements Serializable {
 
@@ -367,13 +367,8 @@ public class ConnetcionController implements Serializable {
     }
 
     private boolean isFirstVisit() {
-        if (getFacede().count() <= 0) {
-//            JsfUtil.addSuccessMessage("First Visit");
-            return true;
-        } else {
+        return getFacede().count() <= 0;//            JsfUtil.addSuccessMessage("First Visit");
 //            JsfUtil.addSuccessMessage("Not, Not First Visit");
-            return false;
-        }
 
     }
 
@@ -406,15 +401,19 @@ public class ConnetcionController implements Serializable {
             localeCode = "si_LK";
         }
         Locale myLocale;
-        if (localeCode.equals("si_LK")) {
-            System.out.println("Sinhala");
-            myLocale = new Locale("si", "LK");
-        } else if (localeCode.equals("ta_LK")) {
-            System.out.println("Tamil");
-            myLocale = new Locale("ta", "LK");
-        } else {
-            System.out.println("English");
-            myLocale = new Locale("en");
+        switch (localeCode) {
+            case "si_LK":
+                System.out.println("Sinhala");
+                myLocale = new Locale("si", "LK");
+                break;
+            case "ta_LK":
+                System.out.println("Tamil");
+                myLocale = new Locale("ta", "LK");
+                break;
+            default:
+                System.out.println("English");
+                myLocale = new Locale("en");
+                break;
         }
         FacesContext.getCurrentInstance().getViewRoot().setLocale(myLocale);
     }
@@ -724,7 +723,7 @@ public class ConnetcionController implements Serializable {
     }
 
     public DataModel<Area> getAreas() {
-        return new ListDataModel<Area>(getAreaFacade().findAll());
+        return new ListDataModel<>(getAreaFacade().findAll());
     }
 
     public void setAreas(DataModel<Area> areas) {
@@ -748,7 +747,7 @@ public class ConnetcionController implements Serializable {
     }
 
     public DataModel<Institution> getInstitutions() {
-        return new ListDataModel<Institution>(getInstitutionFacade().findAll());
+        return new ListDataModel<>(getInstitutionFacade().findAll());
     }
 
     public void setInstitutions(DataModel<Institution> institutions) {
@@ -773,7 +772,7 @@ public class ConnetcionController implements Serializable {
 
     public DataModel<Unit> getUnits() {
         if (getInstitution() != null) {
-            return new ListDataModel<Unit>(getUnitFacade().findBySQL("SELECT u FROM Unit u WHERE u.retired=false AND u.institution.id = " + getInstitution().getId()));
+            return new ListDataModel<>(getUnitFacade().findBySQL("SELECT u FROM Unit u WHERE u.retired=false AND u.institution.id = " + getInstitution().getId()));
         } else {
             return null;
         }

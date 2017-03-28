@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CountryCreateDlg" widgetVar="CountryCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCountry.CreateCountryTitle}">
+            <h:form id="CountryCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{countryController.selected != null}">
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_sname}" for="sname" />
+                        <p:inputText id="sname" value="#{countryController.selected.sname}" title="#{bundleCountry.CreateCountryTitle_sname}" />
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_tname}" for="tname" />
+                        <p:inputText id="tname" value="#{countryController.selected.tname}" title="#{bundleCountry.CreateCountryTitle_tname}" />
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{countryController.selected.code}" title="#{bundleCountry.CreateCountryTitle_code}" />
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{countryController.selected.createdAt}" title="#{bundleCountry.EditCountryTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_creater}" for="creater" />
+                        <p:selectOneMenu id="creater" value="#{countryController.selected.creater}" >
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="createrItem"
+                                           itemValue="#{createrItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{countryController.selected.description}" title="#{bundleCountry.CreateCountryTitle_description}" />
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{countryController.selected.name}" title="#{bundleCountry.CreateCountryTitle_name}" />
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_retireComments}" for="retireComments" />
+                        <p:inputText id="retireComments" value="#{countryController.selected.retireComments}" title="#{bundleCountry.CreateCountryTitle_retireComments}" />
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_retiredAt}" for="retiredAt" />
+                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{countryController.selected.retiredAt}" title="#{bundleCountry.EditCountryTitle_retiredAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_retirer}" for="retirer" />
+                        <p:selectOneMenu id="retirer" value="#{countryController.selected.retirer}" >
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="retirerItem"
+                                           itemValue="#{retirerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_superArea}" for="superArea" />
+                        <p:selectOneMenu id="superArea" value="#{countryController.selected.superArea}" >
+                            <f:selectItems value="#{areaController.itemsAvailableSelectOne}"
+                                           var="superAreaItem"
+                                           itemValue="#{superAreaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleCountry.CreateCountryLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{countryController.selected.id}" title="#{bundleCountry.CreateCountryTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{countryController.create}" value="#{bundleCountry.Save}" update="display,:CountryListForm:datalist,:growl" oncomplete="handleSubmit(args,'CountryCreateDialog');"/>
+                    <p:commandButton value="#{bundleCountry.Cancel}" onclick="CountryCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

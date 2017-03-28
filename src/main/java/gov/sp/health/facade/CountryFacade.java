@@ -1,5 +1,6 @@
 /*
- * Author : Dr. M H B Ariyaratne, MO(Health Information), email : buddhika.ari@gmail.com
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package gov.sp.health.facade;
@@ -11,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author IT
+ * @author pdhs-sp
  */
 @Stateless
 public class CountryFacade extends AbstractFacade<Country> {

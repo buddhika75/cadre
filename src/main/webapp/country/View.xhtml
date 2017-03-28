@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CountryViewDlg" widgetVar="CountryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCountry.ViewCountryTitle}">
+            <h:form id="CountryViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{countryController.selected != null}">
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_sname}"/>
+                        <h:outputText value="#{countryController.selected.sname}" title="#{bundleCountry.ViewCountryTitle_sname}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_tname}"/>
+                        <h:outputText value="#{countryController.selected.tname}" title="#{bundleCountry.ViewCountryTitle_tname}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_code}"/>
+                        <h:outputText value="#{countryController.selected.code}" title="#{bundleCountry.ViewCountryTitle_code}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_createdAt}"/>
+                        <h:outputText value="#{countryController.selected.createdAt}" title="#{bundleCountry.ViewCountryTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_creater}"/>
+                        <h:outputText value="#{countryController.selected.creater}" title="#{bundleCountry.ViewCountryTitle_creater}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_description}"/>
+                        <h:outputText value="#{countryController.selected.description}" title="#{bundleCountry.ViewCountryTitle_description}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_name}"/>
+                        <h:outputText value="#{countryController.selected.name}" title="#{bundleCountry.ViewCountryTitle_name}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_retireComments}"/>
+                        <h:outputText value="#{countryController.selected.retireComments}" title="#{bundleCountry.ViewCountryTitle_retireComments}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_retiredAt}"/>
+                        <h:outputText value="#{countryController.selected.retiredAt}" title="#{bundleCountry.ViewCountryTitle_retiredAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_retirer}"/>
+                        <h:outputText value="#{countryController.selected.retirer}" title="#{bundleCountry.ViewCountryTitle_retirer}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_superArea}"/>
+                        <h:outputText value="#{countryController.selected.superArea}" title="#{bundleCountry.ViewCountryTitle_superArea}"/>
+                        <h:outputText value="#{bundleCountry.ViewCountryLabel_id}"/>
+                        <h:outputText value="#{countryController.selected.id}" title="#{bundleCountry.ViewCountryTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundleCountry.Close}" onclick="CountryViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

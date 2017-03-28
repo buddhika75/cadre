@@ -43,6 +43,7 @@ gov/sp/health/entity/WebUser_.class
 gov/sp/health/bean/WebUserRoleController$WebUserRoleControllerConverter.class
 gov/sp/health/entity/DesignationCategory.class
 gov/sp/health/facade/AbstractFacade.class
+gov/sp/health/bean/util/JsfUtil$PersistAction.class
 gov/sp/health/facade/DpdhsFacade.class
 gov/sp/health/entity/GnArea.class
 gov/sp/health/facade/PopulationFacade.class

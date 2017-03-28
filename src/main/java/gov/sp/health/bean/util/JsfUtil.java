@@ -56,4 +56,14 @@ public class JsfUtil {
         String theId = JsfUtil.getRequestParameter(requestParameterName);
         return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
     }
+
+    public static boolean isValidationFailed() {
+        return FacesContext.getCurrentInstance().isValidationFailed();
+    }
+
+    public static enum PersistAction {
+        CREATE,
+        DELETE,
+        UPDATE
+    }
 }
