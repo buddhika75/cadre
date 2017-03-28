@@ -155,8 +155,10 @@ public class LanguageBean implements Serializable {
     }
 
     public String getLocaleCode() {
-        localeCode = sessionController.getLoggedUser().getDefLocale();
-        if(sessionController.getLoggedUser()==null||localeCode==null || localeCode.trim().equals("")){
+        if (sessionController.getLoggedUser() == null ) {
+            localeCode = "si_LK";
+        }
+        if (localeCode == null || localeCode.trim().equals("")) {
             localeCode = "si_LK";
         }
         return localeCode;
