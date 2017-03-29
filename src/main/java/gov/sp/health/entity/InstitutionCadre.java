@@ -49,6 +49,17 @@ public class InstitutionCadre implements Serializable {
     Long femaleIn;
     Long approved;
     Long vac;
+    Long norm;
+
+    public Long getNorm() {
+        return norm;
+    }
+
+    public void setNorm(Long norm) {
+        this.norm = norm;
+    }
+    
+    
 
     public Integer getIntYear() {
         return intYear;

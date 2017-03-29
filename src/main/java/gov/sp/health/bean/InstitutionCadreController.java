@@ -48,6 +48,7 @@ public class InstitutionCadreController implements Serializable {
     SessionController sessionController;
     private InstitutionCadre current;
     private List<InstitutionCadre> items = null;
+    private List<InstitutionCadre> approvedCadre = null;
     private List<InstitutionCadre> designationItems = null;
     Institution institution;
     Designation designation;
@@ -66,6 +67,7 @@ public class InstitutionCadreController implements Serializable {
     long institutionTotalInCount;
     long institutionVacantInCount;
     long institutionApprovedCount;
+    long institutionNormCount;
 
     public long getMaleIn() {
         return maleIn;
@@ -171,6 +173,14 @@ public class InstitutionCadreController implements Serializable {
         this.institutionApprovedCount = institutionApprovedCount;
     }
 
+    public long getInstitutionNormCount() {
+        return institutionNormCount;
+    }
+
+    public void setInstitutionNormCount(long institutionNormCount) {
+        this.institutionNormCount = institutionNormCount;
+    }
+
     public void setCarderYearLast(Integer carderYearLast) {
         this.carderYearLast = carderYearLast;
     }
@@ -185,6 +195,49 @@ public class InstitutionCadreController implements Serializable {
 
     public void setTypeCarderFacade(InstitutionTypeCadreFacade typeCarderFacade) {
         this.typeCarderFacade = typeCarderFacade;
+    }
+
+    public void fillApprovedCardreFromNorm() {
+        String sql;
+        if (getInstitution() == null) {
+            JsfUtil.addErrorMessage("Please select the institute");
+            return;
+        }
+        if (getInstitution().getInstitutionType() == null) {
+            JsfUtil.addErrorMessage("Please add a type to the institution " + getInstitution().getName());
+            return;
+        }
+        Map m;
+        m = new HashMap();
+        sql = "Select d From InstitutionCadre d "
+                + " where d.retired=false "
+                + " and d.institution = :ins "
+                + " and d.intYear = :intYear and d.intMonth = :intMon "
+                + " order by d.designation.name";
+        m.put("ins", getInstitution());
+        m.put("intYear", 0);
+        m.put("intMon", 0);
+        List<InstitutionCadre> insCs = getFacade().findBySQL(sql, m);
+        for (InstitutionCadre ic : insCs) {
+            ic.setRetired(true);
+            getFacade().edit(ic);
+        }
+        sql = "Select d From InstitutionTypeCadre d where d.retired=false and d.institutionType.id = " + getInstitution().getInstitutionType().getId() + " order by d.name";
+        List<InstitutionTypeCadre> typItems = getTypeCarderFacade().findBySQL(sql);
+        for (InstitutionTypeCadre itc : typItems) {
+            InstitutionCadre ic = new InstitutionCadre();
+            ic.setDesignation(itc.getDesignation());
+            ic.setInstitution(getInstitution());
+            ic.setMaleAndFemaleIn(itc.getCadreCount());
+            ic.setNorm(itc.getCadreCount());
+            ic.setApproved(itc.getCadreCount());
+            ic.setIntMonth(0);
+            ic.setIntYear(0);
+            ic.setCreatedAt(Calendar.getInstance().getTime());
+            ic.setCreater(sessionController.loggedUser);
+            getEjbFacade().create(ic);
+        }
+        fillApprovedCadre();
     }
 
     public void fillInsTypeCarder() {
@@ -427,6 +480,7 @@ public class InstitutionCadreController implements Serializable {
         long fi = 0l;
         long a = 0l;
         long v = 0l;
+        long n = 0l;
         if (ics == null) {
             return;
         }
@@ -436,12 +490,39 @@ public class InstitutionCadreController implements Serializable {
             fi = fi + c.getFemaleIn();
             a = a + c.getApproved();
             v = v + c.getVac();
+            n = n + c.getNorm();
         }
         institutionMaleInCount = mi;
         institutionFemaleInCount = fi;
         institutionVacantInCount = v;
         institutionApprovedCount = a;
         institutionTotalInCount = t;
+        institutionNormCount = n;
+    }
+
+    public String fillApprovedCadre() {
+        Map m = new HashMap();
+        String sql;
+        if (getInstitution() == null) {
+            approvedCadre = new ArrayList<>();
+        }
+        sql = "Select d From InstitutionCadre d "
+                + " where d.retired=false "
+                + " and d.institution = :ins "
+                + " and d.intYear = :intYear and d.intMonth = :intMon "
+                + " order by d.designation.name";
+        m.put("ins", getInstitution());
+        m.put("intYear", 0);
+        m.put("intMon", 0);
+        approvedCadre = getFacade().findBySQL(sql, m);
+        return "/cadre_approved";
+    }
+
+    public List<InstitutionCadre> getApprovedCadre() {
+        if (approvedCadre == null) {
+            approvedCadre = new ArrayList<>();
+        }
+        return approvedCadre;
     }
 
     public List<InstitutionCadre> getItems() {

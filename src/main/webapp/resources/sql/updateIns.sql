@@ -1,3 +1,3 @@
 UPDATE INSTITUTION
 SET DTYPE = 'HealthInstitution'
-WHERE DTYPE = 'Supplier';
+WHERE DTYPE = 'Publisher';

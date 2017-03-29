@@ -156,7 +156,7 @@ public class LanguageBean implements Serializable {
 
     public String getLocaleCode() {
         System.out.println("sessionController.getLoggedUser() = " + sessionController.getLoggedUser());
-        if (sessionController.getLoggedUser() == null ) {
+        if (sessionController.getLoggedUser() != null ) {
             System.out.println("1");
             localeCode = sessionController.getLoggedUser().getDefLocale();
         }
