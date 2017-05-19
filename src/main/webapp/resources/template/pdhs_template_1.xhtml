@@ -19,6 +19,7 @@
 
     <h:body >
         <f:view >
+            <p:growl autoUpdate="true" ></p:growl>
             <h:outputStylesheet library="css" name="pdhs.css"  />
             <table id="bodyTable" >
                 <tr id="topLine">
@@ -84,8 +85,13 @@
                                             <h:inputText value="#{connetcionController.userName}" />
                                             <h:outputLabel value="#{labels.Password}" ></h:outputLabel>
                                             <h:inputSecret value="#{connetcionController.passord}" />
-                                            <h:commandButton id="btnLogin" class="pdButton" type="submit" value="#{labels.Login}" action="#{connetcionController.loginAction()}"   />
-                                            <h:commandButton id="btnReg" class="pdButton" type="submit" value="#{labels.Register}" action="register"  />
+
+                                            <p:spacer height="1" width="10" ></p:spacer>
+                                            <h:panelGroup >
+                                                <p:commandButton id="btnLogin"  value="#{labels.Login}" action="#{connetcionController.loginAction()}"   />
+                                                <p:commandButton id="btnReg" value="#{labels.Register}" action="register"  />
+                                            </h:panelGroup>
+                                            
                                         </h:panelGrid>
 
                                     </p:panel>

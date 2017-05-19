@@ -1,8 +1,9 @@
 
 #top {
+    background-color:#BBDEFE;
+    color:#333333;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
     position: relative;
-    background-color: #036fab;
-    color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }
@@ -47,15 +48,21 @@
 }
 
 #top a:link, #top a:visited {
-  color: white;
-  font-weight : bold;
-  text-decoration: none;
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
 }
 
 
+.topic{
+    font-size:0.8em;
+    font-weight:normal;
+    letter-spacing:0.4em;
+    padding-left:3em;
+}

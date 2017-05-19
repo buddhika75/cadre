@@ -18,7 +18,9 @@ import gov.sp.health.facade.InstitutionTypeFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 
 import javax.enterprise.context.SessionScoped;
@@ -62,6 +64,18 @@ public class InstitutionController implements Serializable {
     boolean modifyControlDisable = true;
     String selectText = "";
 
+    public List<Institution> completeInstitutions(String qry){
+        String j;
+        Map m = new HashMap();
+        j = "select i "
+                + " from Institution i "
+                + " where i.retired=false "
+                + " and upper(i.name) like :qry"
+                + " order by i.name";
+        m.put("qry", "%" + qry.trim().toUpperCase());
+        return getEjbFacade().findBySQL(j,m);
+    }
+    
     public InstitutionController() {
         System.out.println("N");
     }
@@ -200,16 +214,6 @@ public class InstitutionController implements Serializable {
 
     public void setCurrent(Institution current) {
         this.current = current;
-         String temSql = "";
-        if (current != null && current.getId() != null) {
-            temSql = "select c from InstitutionContact c where c.retired = false and c.institution.id = " + current.getId();
-            currentContacts = getInsConFacade().findBySQL(temSql);
-            System.out.println("Getting new set of contacts " + currentContacts.size());
-        } else {
-            currentContacts = null;
-            System.out.println("Setting new set of contacts to null");
-        }
-        currentContact = new InstitutionContact();
     }
 
     private InstitutionFacade getFacade() {

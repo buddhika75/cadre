@@ -32,32 +32,20 @@
                     <td align="left" width="60%"><h:inputText value="#{connetcionController.newPersonName}"/></td>
                 </tr>
                 <tr>
-                    <td class="pdLabel" align="right">#{labels.Designation}</td>
-                    <td align="left"><h:inputText value="#{connetcionController.newDesignation}"  /></td>
-                </tr>
-                <tr>
                     <td class="pdLabel" align="right">#{labels.institution}</td>
                     <td align="left">
-                        <h:selectOneListbox id="cmbIns" value="#{connetcionController.institution}" size="5">
-                            <f:selectItems value="#{connetcionController.institutions}" var="ins" itemValue="#{ins}" itemLabel="#{ins.name}"/>
-                            <f:ajax event="change" execute="cmbIns" render="cmbUnit" />
-                        </h:selectOneListbox>
+                        <p:autoComplete completeMethod="#{institutionController.completeInstitutions}"
+                                        var="i" value="#{connetcionController.institution}" itemLabel="#{i.name}" itemValue="#{i}" >
+                        </p:autoComplete>
                     </td>
                 </tr>
-                <tr>
-                    <td class="pdLabel" align="right">#{postLabels.unit}</td>
-                    <td align="left">
-                        <h:selectOneListbox id="cmbUnit" value="#{connetcionController.unit}" size="5">
-                            <f:selectItems value="#{connetcionController.units}" var="uni" itemValue="#{uni}" itemLabel="#{uni.name}"/>
-                        </h:selectOneListbox>
-                    </td>
-                </tr>                
                 <tr>
                     <td class="pdLabel" align="right">#{labels.area}</td>
                     <td align="left">
-                        <h:selectOneListbox value="#{connetcionController.current.webUserPerson.area}" size="5">
-                            <f:selectItems value="#{connetcionController.areas}" var="area" itemValue="#{area}" itemLabel="#{area.name}"/>
-                        </h:selectOneListbox>
+                        <p:autoComplete completeMethod="#{areaController.completeAreas}"
+                                        var="a" value="#{connetcionController.current.webUserPerson.area}"
+                                        itemLabel="#{a.name}" itemValue="#{a}" >
+                        </p:autoComplete>
                     </td>
                 </tr>
                 <tr>
@@ -72,16 +60,13 @@
                     <td class="pdLabel" align="right">#{postLabels.reenterPassword}</td>
                     <td align="left"><h:inputSecret value="#{connetcionController.newPasswordConfirm}"  /></td>
                 </tr>                
-                <tr>
-                    <td class="pdLabel" align="right">#{postLabels.passwordHint}</td>
-                    <td align="left"><h:inputText value="#{connetcionController.newPasswordHint}"  /></td>
-                </tr>                
-                <tr>
-                    <td align="left"></td>
-                    <td align="left">
-                        <h:commandButton id="btnReg" class="pdButton" type="submit" value="#{labels.Register}" action="#{connetcionController.registeUser}" /> 
-                    </td>
-                </tr>                  
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left">
+                            <h:commandButton id="btnReg" class="pdButton" type="submit" value="#{labels.Register}" action="#{connetcionController.registeUser}" /> 
+                            <h:commandButton id="btnHome" class="pdButton" type="submit" value="#{labels.home}" action="/index" /> 
+                        </td>
+                    </tr>                  
                 <tr>
                     <td colspan="2" class="pdLabel">&nbsp;</td>
                 </tr>

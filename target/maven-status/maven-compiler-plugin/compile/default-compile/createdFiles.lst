@@ -35,6 +35,7 @@ gov/sp/health/entity/MeasurementUnit_.class
 gov/sp/health/bean/CountryController.class
 gov/sp/health/bean/FunctionCategoryController.class
 gov/sp/health/facade/QuestionerItemFacade.class
+gov/sp/health/bean/HealthInstitutionController.class
 gov/sp/health/entity/Location.class
 gov/sp/health/entity/Privilege_.class
 gov/sp/health/facade/GnFacade.class
@@ -109,8 +110,8 @@ gov/sp/health/entity/PersonContact.class
 gov/sp/health/entity/InstitutionTypeCadre_.class
 gov/sp/health/entity/DpdhsArea.class
 gov/sp/health/entity/Sex.class
-gov/sp/health/facade/InstitutionContactFacade.class
 gov/sp/health/facade/PrivilegeFacade.class
+gov/sp/health/facade/InstitutionContactFacade.class
 gov/sp/health/entity/Finding.class
 gov/sp/health/entity/Manufacturer_.class
 gov/sp/health/bean/InstitutionController$InstitutionControllerConverter.class
@@ -142,6 +143,7 @@ gov/sp/health/data/EntryDataType.class
 gov/sp/health/entity/UnitType.class
 gov/sp/health/entity/Staff_.class
 gov/sp/health/data/ArticleType.class
+gov/sp/health/entity/OldInstitutionCategory_.class
 gov/sp/health/entity/Province_.class
 gov/sp/health/bean/FileUploadController.class
 gov/sp/health/entity/HealthInstitution_.class
@@ -166,6 +168,7 @@ gov/sp/health/entity/MeasurementUnit.class
 gov/sp/health/bean/InstitutionTypeCadreController.class
 gov/sp/health/facade/InstitutionTypeCadreFacade.class
 gov/sp/health/entity/WebTheme.class
+gov/sp/health/bean/HealthInstitutionController$HealthInstitutionControllerConverter.class
 gov/sp/health/entity/QuestionerAnswerItem_.class
 gov/sp/health/entity/HealthInstitution.class
 gov/sp/health/bean/FunctionCategoryController$FunctionCategoryControllerConverter.class
@@ -178,6 +181,7 @@ gov/sp/health/entity/InstitutionContact_.class
 gov/sp/health/entity/Unit.class
 gov/sp/health/bean/MohController.class
 gov/sp/health/bean/InstitutionCadreController$InstitutionCadreControllerConverter.class
+gov/sp/health/entity/OldInstitutionCategory.class
 gov/sp/health/entity/PhiArea_.class
 gov/sp/health/bean/PhmController.class
 gov/sp/health/entity/QuestionerAnswer_.class

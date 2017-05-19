@@ -58,7 +58,7 @@
                                 <h:commandButton id="btnDelete" value="#{labels.delete}" disabled="#{institutionController.selectControlDisable}" styleClass="buttons" action="#{institutionController.delete}">
                                 </h:commandButton>
                             </h:panelGrid>
-                            <p:confirmDialog appendToBody="true" message="#{labels.areYouSureYouWantToDelete}" header="#{labels.initiatingDestroyProcess}" severity="alert" widgetVar="confirmation">  
+                            <p:confirmDialog  message="#{labels.areYouSureYouWantToDelete}" header="#{labels.initiatingDestroyProcess}" severity="alert" widgetVar="confirmation">  
                                 <p:commandButton value="#{labels.yes}" oncomplete="confirmation.hide()" action="#{institutionController.delete()}" update="lstSelect gpDetail"  />  
                                 <p:commandButton value="#{labels.No}" onclick="confirmation.hide()" type="button" />   
                             </p:confirmDialog>
@@ -74,41 +74,12 @@
                                 <h:inputText id="txtName" value="#{institutionController.current.name}" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
                                 <h:outputText id="lblCode" value="#{postLabels.code}" ></h:outputText>
                                 <h:inputText id="txtCode"  class="pdInputText" value="#{institutionController.current.code }" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
-                     
-                                <h:selectOneListbox rendered="#{institutionController.current.id!=null}" id="cmbCon" value="#{personController.currentContact.contactType}" size="1">
-                                    <f:selectItems value="#{contactTypeController.items}"/>
-                                    <f:ajax execute="cmbCon" event="change"/>
-                                    <f:ajax execute="cmbCon" event="focus"/>
-                                </h:selectOneListbox>
-
-                                <h:panelGroup rendered="#{institutionController.current.id!=null}">
-                                    <h:inputText id="txtCon" value="#{institutionController.currentContact.name}">
-                                        <f:ajax execute="txtCon" event="keyup"/>
-                                    </h:inputText>
-                                    <h:commandButton id="btnCon" action="#{institutionController.addContact}" value="#{postLabels.addContact}" >
-                                        <f:ajax execute="btnCon" render="dtCon txtCon cmbCon" />
-                                    </h:commandButton> 
-                                </h:panelGroup>
-
-                                <h:outputLabel  rendered="#{institutionController.current.id!=null}"> </h:outputLabel>
-                                <p:dataTable emptyMessage="#{postLabels.noContactDetailsFound}"  rendered="#{institutionController.current.id!=null}" id="dtCon" value="#{institutionController.currentContacts}" var="con">
-                                    <p:column>
-                                        <h:outputLabel value="#{con.contactType.name}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <h:outputLabel value="#{con.name}"/>
-                                    </p:column>
-                                </p:dataTable>                                
-
-
-
-
 
                                 <h:outputText id="lblAddress" value="#{postLabels.address}" ></h:outputText>
                                 <h:inputText id="txtAddress"  class="pdInputText" value="#{institutionController.current.address}" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
                                 <h:outputText id="lblTelephone" value="#{postLabels.telephone}" ></h:outputText>
                                 <h:inputText id="txtTelephone"  class="pdInputText" value="#{institutionController.current.telephone }" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
-                                <h:outputText id="lblMobile" value="#{postLabels.telephone}" ></h:outputText>
+                                <h:outputText id="lblMobile" value="#{postLabels.mobile}" ></h:outputText>
                                 <h:inputText id="txtMobile"  class="pdInputText" value="#{institutionController.current.mobile }" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
                                 <h:outputText id="lblFax" value="#{postLabels.fax}" ></h:outputText>
                                 <h:inputText id="txtFax"  class="pdInputText" value="#{institutionController.current.fax}" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
@@ -116,6 +87,17 @@
                                 <h:inputText id="txtEmail"  class="pdInputText" value="#{institutionController.current.email}" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
                                 <h:outputText id="lblWebsite" value="#{postLabels.website}" ></h:outputText>
                                 <h:inputText id="txtWebsite" class="pdInputText" value="#{institutionController.current.website}" disabled="#{institutionController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText id="lblArea" value="#{labels.area}" ></h:outputText>
+                                <p:autoComplete completeMethod="#{areaController.completeAreas}"
+                                                var="a" value="#{institutionController.current.mohArea}"
+                                                itemLabel="#{a.name}" itemValue="#{a}" >
+                                </p:autoComplete>
+                                
+                                <h:outputText id="lblInsSup" value="#{labels.superInstitution}" ></h:outputText>
+                                <p:autoComplete completeMethod="#{institutionController.completeInstitutions}"
+                                                var="i" value="#{institutionController.current.superInstitution}" itemLabel="#{i.name}" itemValue="#{i}" >
+                        </p:autoComplete>
 
                             </h:panelGrid>
                             <h:panelGrid id="gpDetailButtons" columns="2">
@@ -140,7 +122,7 @@
                                 </h:selectOneListbox>
 
 
--->
+        -->
 
 
     </ui:define>

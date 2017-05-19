@@ -8,6 +8,7 @@
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/InstitutionFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/InstitutionContact.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/HealthInstitution.java
+/home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/HealthInstitutionController.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/UserApproveController.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/MohFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/GnFacade.java
@@ -17,10 +18,11 @@
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/data/TemFinding.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/PersonFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/TestBean.java
+/home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/OldInstitutionCategory.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/DpdhsFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/UnitType.java
-/home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/CountryFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/InstitutionController.java
+/home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/CountryFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/DemographyExcelManager.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/util/JsfUtil.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/ProvinceController.java
@@ -91,8 +93,8 @@
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/MohArea.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/PrivilageController.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/QuestionerItem.java
-/home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/InstitutionCadreController.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/entity/Province.java
+/home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/InstitutionCadreController.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/ProvinceFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/facade/ContactTypeFacade.java
 /home/pdhs-sp/Documents/Projects/Cadre/Cadre/src/main/java/gov/sp/health/bean/PhiController.java

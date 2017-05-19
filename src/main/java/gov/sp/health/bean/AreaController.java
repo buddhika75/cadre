@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import javax.inject.Named;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 
 import javax.faces.bean.RequestScoped;
@@ -100,6 +102,18 @@ public class AreaController  implements Serializable {
     public AreaController() {
     }
 
+    public List<Area> completeAreas(String qry){
+        String j;
+        Map m = new HashMap();
+        j = "select i "
+                + " from Area i "
+                + " where i.retired=false "
+                + " and upper(i.name) like :qry"
+                + " order by i.name";
+        m.put("qry", "%" + qry.trim().toUpperCase());
+        return areaFacade.findBySQL(j,m);
+    }
+    
     public DataModel<Area> getAreas() {
         return new ListDataModel<Area>(getAreaFacade().findBySQL("SELECT a FROM Area a WHERE a.retired=false ORDER BY a.name"));
     }

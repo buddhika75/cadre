@@ -16,8 +16,10 @@ import gov.sp.health.facade.AreaFacade;
 import gov.sp.health.facade.InstitutionFacade;
 import gov.sp.health.facade.UnitFacade;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 
@@ -84,6 +86,8 @@ public class ConnetcionController implements Serializable {
      */
     public ConnetcionController() {
     }
+    
+    
 
     public Person getCurrentPerson() {
         if (currentPerson == null) {
